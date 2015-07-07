@@ -5,6 +5,7 @@ width: 100vw;
   opacity: .7;
 }
 
+
 .head {
   background-color: white;
   position: relative;
@@ -21,6 +22,9 @@ width: 100vw;
   top: -300px;
   margin-left: 500px;
   padding: 40px;
+}
+.button {
+
 }
 
 button{
@@ -67,7 +71,4 @@ th {
 .avatar {
   width: 80px;
   height: 80px;
-}
-.input{
-  border-radius: 5px;
 }
