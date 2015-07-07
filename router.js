@@ -22,6 +22,10 @@ routes.addRoute('/birthdays', function (req, res, url) {
     })
     req.on('end', function () {
       var birthday = qs.parse(data)
+      birthday.photo = []
+      birthday.memory = []
+      birthday.gifts = []
+      console.log('birthday', birthday)
       birthdays.insert(birthday, function (err, doc) {
         if (err) res.end('boop')
         res.writeHead(302, {'Location': '/birthdays'})
