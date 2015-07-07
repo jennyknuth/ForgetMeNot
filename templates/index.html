@@ -3,11 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <title>Index</title>
+  <link rel="stylesheet" href="/public/style.css">
 </head>
 <body>
-<h1>Don't Forget!</h1>
-<a href="/birthdays/new"><button>Add Person</button></a>
-<table>
+  <img src="http://www.pcwalls.net/download/green_field_wallpaper-1680x1050.jpg" alt="field">
+<h1 class="h1-index">Important People to Remember</h1>
+<a href="/birthdays/new" class="move-button" ><button <class="person-button">Add Person</button></a>
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
@@ -17,7 +19,7 @@
 <tbody>
   {{#birthdays}}
     <tr>
-      <td><img src="{{avatar}}" alt=""></td>
+      <td><img src="{{avatar}}" class="avatar" alt=""></td>
       <td><b><a href="/birthdays/{{_id}}">{{name}}</a></b></td>
       <td>{{birthday}}</td>
       <td>
