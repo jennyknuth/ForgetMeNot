@@ -54,7 +54,7 @@ width: 100vw;
 }
 .table {
   position:relative;
-  padding: 50px;
+  padding: 10px 50px;
   background-color: rgba(255,255,255, .5);
   color: black;
 }
@@ -71,11 +71,11 @@ width: 100vw;
 th {
   position:relative;
   font-size: 1.5em;
-  padding: 50px;
+  padding: 10px 50px;
   color: black;
 }
 td {
-padding: 50px;
+padding: 10px 50px;
 }
 
 
