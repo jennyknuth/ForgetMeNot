@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit</title>
+</head>
+<body>
+<h1>Update {{name}}</h1>
+<a href="/birthdays"><button>BACK</button></a>
+<form action="/birthdays/{{_id}}/update" method="POST">
+        <table>
+          <tr>
+            <th>
+              <label for="name">Name</label>
+            </th>
+            <td>
+              <input type="text" name="name" id="name" value="{{name}}">
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <label for="birthday">Birthday</label>
+            </th>
+            <td>
+              <input type="text" name="birthday" id="birthday" value="{{birthday}}">
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <label for="avatar">Picture URL</label>
+            </th>
+            <td>
+              <input type="text" name="avatar" id="avatar" value="{{avatar}}">
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <label for="photo">Other Pictures URL</label>
+            </th>
+            <td>
+              <input type="text" name="photo" id="photo" value="{{photo}}">
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <label for="memories">Memories</label>
+            </th>
+            <td>
+              <input type="text" name="memory" id="memories" value="{{memory}}">
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <label for="gifts">Gift Idea</label>
+            </th>
+            <td>
+              <input type="text" name="gifts" id="gifts" value="{{gifts}}">
+            </td>
+          </tr>
+          <tr>
+            <th>
+            </th>
+            <td>
+              <input type="submit" value="Update Person" class="button">
+            </td>
+          </tr>
+        </table>
+      </form>
+</body>
+</html>
