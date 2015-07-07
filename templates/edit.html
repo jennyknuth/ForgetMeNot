@@ -3,18 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <title>Edit</title>
+  <link rel="stylesheet" href="/public/style.css">
 </head>
 <body background= "http://www.pcwalls.net/download/green_field_wallpaper-1680x1050.jpg">
-<h1>Update {{name}}</h1>
-<a href="/birthdays"><button>BACK</button></a>
+<h1 class="h1-index">Update {{name}}</h1>
+<a href="/birthdays"><button class="move-button">BACK</button></a>
 <form action="/birthdays/{{_id}}/update" method="POST">
-        <table>
+        <table class="table">
           <tr>
             <th>
               <label for="name">Name</label>
             </th>
             <td>
-              <input type="text" name="name" id="name" value="{{name}}">
+              <input class="button" type="text" name="name" id="name" value="{{name}}">
             </td>
           </tr>
           <tr>
@@ -22,7 +23,7 @@
               <label for="birthday">Birthday</label>
             </th>
             <td>
-              <input type="text" name="birthday" id="birthday" value="{{birthday}}">
+              <input class="button" type="text" name="birthday" id="birthday" value="{{birthday}}">
             </td>
           </tr>
           <tr>
@@ -30,7 +31,7 @@
               <label for="avatar">Picture URL</label>
             </th>
             <td>
-              <input type="text" name="avatar" id="avatar" value="{{avatar}}">
+              <input class="button" type="text" name="avatar" id="avatar" value="{{avatar}}">
             </td>
           </tr>
           <tr>
@@ -38,7 +39,7 @@
               <label for="photo">Other Pictures URL</label>
             </th>
             <td>
-              <input type="text" name="photo" id="photo" value="{{photo}}">
+              <input class="button" type="text" name="photo" id="photo" value="{{photo}}">
             </td>
           </tr>
           <tr>
@@ -46,7 +47,7 @@
               <label for="memories">Memories</label>
             </th>
             <td>
-              <input type="text" name="memory" id="memories" value="{{memory}}">
+              <input class="button" type="text" name="memory" id="memories" value="{{memory}}">
             </td>
           </tr>
           <tr>
@@ -54,14 +55,14 @@
               <label for="gifts">Gift Idea</label>
             </th>
             <td>
-              <input type="text" name="gifts" id="gifts" value="{{gifts}}">
+              <input class="button" type="text" name="gifts" id="gifts" value="{{gifts}}">
             </td>
           </tr>
           <tr>
             <th>
             </th>
             <td>
-              <input type="submit" value="Update Person" class="button">
+              <input class="button" type="submit" value="Update Person" class="button">
             </td>
           </tr>
         </table>
