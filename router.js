@@ -81,4 +81,14 @@ routes.addRoute('/birthdays/:id/update', function (req, res, url) {
     })
   }
 })
+routes.addRoute('/public/*', function (req, res, url) {
+  res.setHeader('Content-Type', mime.lookup(req.url))
+  fs.readFile('.' + req.url, function (err, file) {
+    if (err) {
+      res.setHeader('Content-Type', 'text/html')
+      res.end('404')
+    }
+    res.end(file)
+  })
+})
 module.exports = routes
