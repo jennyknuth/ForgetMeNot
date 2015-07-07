@@ -91,4 +91,11 @@ routes.addRoute('/public/*', function (req, res, url) {
     res.end(file)
   })
 })
+routes.addRoute('/', function (req, res, url) {
+  res.setHeader('Content-Type', 'text/html')
+  fs.readFile('templates/home.html', function (err, file) {
+    if (err) res.end('404')
+    res.end(file)
+  })
+})
 module.exports = routes
