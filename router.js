@@ -10,7 +10,7 @@ routes.addRoute('/birthdays', function (req, res, url) {
   if (req.method === 'GET') {
     res.setHeader('Content-Type', 'text/html')
     birthdays.find({}, function (err, docs) {
-      if (err) throw err
+      if (err) res.end('could not access database or collection')
       var template = view.render('index', { birthdays: docs})
       res.end(template)
     })
@@ -22,12 +22,24 @@ routes.addRoute('/birthdays', function (req, res, url) {
     })
     req.on('end', function () {
       var birthday = qs.parse(data)
-      birthday.photo = []
-      birthday.memory = []
-      birthday.gifts = []
+      // if (birthday.photo) {
+      //   birthday.photo = [birthday.photo]
+      // } else {
+      //   birthday.photo = []
+      // }
+      if (birthday.memory) {
+        birthday.memory = [birthday.memory]
+      } else {
+        birthday.memory = []
+      }
+      if (birthday.gifts) {
+        birthday.gifts = [birthday.gifts]
+      } else {
+        birthday.gifts = []
+      }
       console.log('birthday', birthday)
       birthdays.insert(birthday, function (err, doc) {
-        if (err) res.end('boop')
+        if (err) res.end('could not insert into database')
         res.writeHead(302, {'Location': '/birthdays'})
         res.end()
       })
@@ -45,7 +57,7 @@ routes.addRoute('/birthdays/:id', function (req, res, url) {
   if (req.method === 'GET') {
     res.setHeader('Content-Type', 'text/html')
     birthdays.findOne({_id: url.params.id}, function (err, doc) {
-        if (err) res.end('It broke')
+        if (err) res.end('could not find id')
         var template = view.render('show', doc)
         res.end(template)
     })
@@ -54,7 +66,7 @@ routes.addRoute('/birthdays/:id', function (req, res, url) {
 routes.addRoute('/birthdays/:id/delete', function (req, res, url) {
   if (req.method === 'POST') {
     birthdays.remove({_id: url.params.id}, function (err, doc) {
-      if (err) throw err
+      if (err) res.end('could not delete')
       res.writeHead(302, {'Location': '/birthdays'})
       res.end()
     })
@@ -64,6 +76,7 @@ routes.addRoute('/birthdays/:id/edit', function (req, res, url) {
   console.log(url.params.id)
   if (req.method === 'GET') {
     birthdays.findOne({_id: url.params.id}, function (err, doc) {
+      if (err) res.end('could not find ID')
       var template = view.render('edit', doc)
       res.end(template)
     })
@@ -81,12 +94,12 @@ routes.addRoute('/birthdays/:id/update', function (req, res, url) {
       console.log('birthday', birthday)
       if (birthday.memory) {
         birthdays.update({_id: url.params.id}, {"$push": { memory: birthday.memory}}, function (err, doc) {
-          if (err) throw err
+          if (err) res.end('could not update memories')
         })
       }
       if (birthday.gifts) {
         birthdays.update({_id: url.params.id}, {"$push": { gifts: birthday.gifts}}, function (err, doc) {
-          if (err) throw err
+          if (err) res.end('could not update gift ideas')
 
         })
       }
@@ -100,7 +113,7 @@ routes.addRoute('/public/*', function (req, res, url) {
   fs.readFile('.' + req.url, function (err, file) {
     if (err) {
       res.setHeader('Content-Type', 'text/html')
-      res.end('404')
+      res.end('file not found: 404')
     }
     res.end(file)
   })
