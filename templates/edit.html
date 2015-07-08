@@ -5,7 +5,7 @@
   <title>Edit</title>
   <link rel="stylesheet" href="/public/style.css">
 </head>
-<body background= "http://www.pcwalls.net/download/green_field_wallpaper-1680x1050.jpg">
+<body background= "/../public/background.jpg">
 <h1 class="h1-index">Update {{name}}</h1>
 <a href="/birthdays"><button class="move-button">BACK</button></a>
 <form action="/birthdays/{{_id}}/update" method="POST">
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <th>
-              <label for="avatar">Picture URL</label>
+              <label for="avatar">Main Picture URL</label>
             </th>
             <td>
               <input class="button" type="text" name="avatar" id="avatar" value="{{avatar}}">
@@ -36,33 +36,66 @@
           </tr>
           <tr>
             <th>
-              <label for="photo">Other Pictures URL</label>
+              Photos of {{name}}
             </th>
             <td>
-              <input class="button" type="text" name="photo" id="photo" value="{{photo}}">
+              <p>{{#photo}}{{.}}{{/photo}}</p>
+            </td>
+            <td>
+              <a href="/birthdays/{{_id}}/edit/"><button class="button left">Edit</button></a> need to link to a new view and routes here to update/delete memories, similar to :id/edit and :id/delete but with :id/memory/edit and :id/memory/delete
             </td>
           </tr>
           <tr>
             <th>
-              <label for="memories">Memories</label>
+              <label for="photo">Add A Photo</label>
             </th>
             <td>
-              <textarea class="button" type="text" name="memory" id="memories" value="{{memory}}" rows="4" cols="50"></textarea>
+              <input class="button" type="text" name="photo" id="photo">
             </td>
           </tr>
           <tr>
             <th>
-              <label for="gifts">Gift Idea</label>
+              Memories
             </th>
             <td>
-              <input class="button" type="text" name="gifts" id="gifts" value="{{gifts}}">
+              <p>{{#memory}}{{.}}{{/memory}}</p>
+            </td>
+            <td>
+              <a href="/birthdays/{{_id}}/edit/"><button class="button left">Edit</button></a> need to link to a new view and routes here to update/delete memories, similar to :id/edit and :id/delete but with :id/memory/edit and :id/memory/delete
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <label for="memory">Add A Memory</label>
+            </th>
+            <td>
+              <textarea class="button" type="text" name="memory" id="memory" rows="4" cols="50" value=""></textarea>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              Gift Ideas
+            </th>
+            <td>
+              <p>{{#gifts}}{{.}}{{/gifts}}</p>
+            </td>
+            <td>
+              <a href="/birthdays/{{_id}}/edit/"><button class="button left">Edit</button></a> need to link to a new view and routes here to update/delete giftss, similar to :id/edit and :id/delete but with :id/gift/edit and :id/gift/delete
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <label for="gifts">Add A Gift Idea</label>
+            </th>
+            <td>
+              <input class="button" type="text" name="gifts" id="gifts">
             </td>
           </tr>
           <tr>
             <th>
             </th>
             <td>
-              <input class="button" type="submit" value="Update Person" class="button">
+              <input class="button" type="submit" value="Update Person">
             </td>
           </tr>
         </table>

@@ -5,15 +5,15 @@
     <meta charset='UTF-8'>
     <title>Profile</title>
 </head>
-<body background= "http://www.pcwalls.net/download/green_field_wallpaper-1680x1050.jpg">
+<body background= "./../public/background.jpg">
   <section>
     <a href="/birthdays"><button class="move-button">Everyone</button></a>
       <h2>{{name}}</h2>
       <img class="avatar" src="{{avatar}}">
       <h3>Birthday: {{birthday}}</h3>
-      <h3>Pictures: </h3><img src="{{photo}}" alt="" class="avatar">
-      <h3>Memories: {{memory}}</h3>
-      <h3>Gift Ideas: {{gifts}}</h3>
+      <!-- <h3>Pictures: </h3><img src="{{photo}}" alt="" class="avatar"> -->
+      <h3>Memories: {{#memory}}{{.}} {{/memory}}</h3>
+      <h3>Gift Ideas: {{#gifts}}{{.}} {{/gifts}} </h3>
       <br>
       <a href="/birthdays/{{_id}}/edit"><button class="button left">Edit</button></a>
   </section>

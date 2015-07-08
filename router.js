@@ -11,7 +11,7 @@ routes.addRoute('/birthdays', function (req, res, url) {
     res.setHeader('Content-Type', 'text/html')
     birthdays.find({}, function (err, docs) {
       if (err) throw err
-      var template = view.render('index', {birthdays: docs})
+      var template = view.render('index', { birthdays: docs})
       res.end(template)
     })
   }
@@ -61,6 +61,7 @@ routes.addRoute('/birthdays/:id/delete', function (req, res, url) {
   }
 })
 routes.addRoute('/birthdays/:id/edit', function (req, res, url) {
+  console.log(url.params.id)
   if (req.method === 'GET') {
     birthdays.findOne({_id: url.params.id}, function (err, doc) {
       var template = view.render('edit', doc)
@@ -77,11 +78,20 @@ routes.addRoute('/birthdays/:id/update', function (req, res, url) {
 
     req.on('end', function () {
       var birthday = qs.parse(data)
-      birthdays.update({_id: url.params.id}, birthday, function (err, doc) {
-        if (err) throw err
-        res.writeHead(302, {'Location': '/birthdays'})
-        res.end()
-      })
+      console.log('birthday', birthday)
+      if (birthday.memory) {
+        birthdays.update({_id: url.params.id}, {"$push": { memory: birthday.memory}}, function (err, doc) {
+          if (err) throw err
+        })
+      }
+      if (birthday.gifts) {
+        birthdays.update({_id: url.params.id}, {"$push": { gifts: birthday.gifts}}, function (err, doc) {
+          if (err) throw err
+
+        })
+      }
+      res.writeHead(302, {'Location': '/birthdays'})
+      res.end()
     })
   }
 })
